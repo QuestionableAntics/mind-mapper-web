@@ -1,0 +1,23 @@
+$backgroundcolor: rgb(88, 5, 99);
+
+.mind-node-child {
+	border-radius: 100%;
+	background-color: lighten($backgroundcolor, 15%);
+	height: 8em;
+	width: 8em;
+	border-width: 100px;
+	border-color: black;
+	color: white;
+	transition: .5s;
+	// margin: auto;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mind-node-child:hover {
+	background-color: lighten($backgroundcolor, 20%)
+}
+
+
