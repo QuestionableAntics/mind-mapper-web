@@ -2,6 +2,7 @@ import React, { useState, FunctionComponent } from "react";
 import './mind-node-component.scss';
 import MindNodeChildComponent from "../child-node/child-node-component";
 import MindNode from "../../classes/mind-node";
+import MindNodeReducerService from '../../reducers/mind-node-reducer-service';
 
 
 const MindNodeComponent:FunctionComponent<MindNode> = (initialNodeInformation: MindNode) => {
@@ -17,8 +18,8 @@ const MindNodeComponent:FunctionComponent<MindNode> = (initialNodeInformation: M
 			</div>
 			<ModalComponent initialShow={showModal} node={nodeInformation}></ModalComponent>
 			<div>
-				{nodeInformation.children.map((node, i) => 
-					<MindNodeChildComponent nodeInformation={node} index={i} key={i} />
+				{nodeInformation.children.map(node => 
+					<MindNodeChildComponent nodeInformation={node} key={node.id} />
 				)}
 			</div>
 		</div>
