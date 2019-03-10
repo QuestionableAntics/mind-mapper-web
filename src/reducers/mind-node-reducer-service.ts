@@ -1,8 +1,12 @@
 import { useReducer, ReactHTML } from 'react';
 import MindNode from "../classes/mind-node";
 import ReducerMessage from '../interfaces/reducer-message';
+import MindNodeReducer from './mind-node-reducer';
 export default class MindNodeReducerServicer {
-	dispatch: React.Dispatch<ReducerMessage>
+	private dispatch: React.Dispatch<ReducerMessage>
+
+	// mindNodeReducer: MindNodeReducer;
+
 	constructor(dispatch: React.Dispatch<ReducerMessage>) {
 		this.dispatch = dispatch;
 	}

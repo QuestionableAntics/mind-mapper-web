@@ -1,8 +1,6 @@
 import MindNode from "../classes/mind-node";
 import ReducerMessage from "../interfaces/reducer-message";
 
-let i = 1;
-
 const MindNodeReducer = (state: MindNode[], action: ReducerMessage) => {
     switch(action.type) {
         case 'ADD_NODE': {
