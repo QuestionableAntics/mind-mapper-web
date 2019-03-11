@@ -5,8 +5,9 @@ import ChildNodeInformation from '../interfaces/child-node-information';
 export default class MindNode implements FocusedNodeInformation, ChildNodeInformation {
 	public id: number;
     public title: string;
-    public notes: Array<string>;
-    public children: Array<ChildNodeInformation>;
+	public notes: Array<string>;
+	public description: string;
+    public children: Array<MindNode>;
 	public backgroundColor: Color;
 	public textColor: Color;
 	xDisplacement: number;
@@ -15,15 +16,17 @@ export default class MindNode implements FocusedNodeInformation, ChildNodeInform
 
 	public constructor( id: number,
 						title?: string, 
-						notes?: Array<string>, 
-						children?: Array<ChildNodeInformation>, 
+						notes?: Array<string>,
+						description?: string,
+						children?: Array<MindNode>, 
 						backgroundColor?: Color,
 						textColor?: Color,
 						xDisplacement?: number,
 						yDisplacement?: number) {
 		this.id = id;
         this.title = title ? title : "test titleasfasdfsaf";
-        this.notes = notes ? notes: [];
+		this.notes = notes ? notes: [];
+		this.description = description ? description : "";
         this.children = children ? children : [];
 		this.backgroundColor = backgroundColor ? backgroundColor: "lightblue";
 		this.textColor = textColor ? textColor : "black"

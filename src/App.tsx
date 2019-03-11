@@ -1,25 +1,14 @@
-import React, { Component, FunctionComponent, useState, useReducer } from 'react';
+import React, { FunctionComponent } from 'react';
+import { useGlobal } from 'reactn';
 import './App.css';
 import MindNodeComponent from './components/parent-node/mind-node-component';
 import MindNode from './classes/mind-node';
-import mindNodeReducer from './reducers/mind-node-reducer';
-import { useGlobal } from 'reactn';
-
-let testData = [
-    new MindNode(1, "", ["this is a note", "this is another note", "this is a third note"], [
-		new MindNode(2, "yert", ["asdfasdf"], []),
-		new MindNode(3),
-		new MindNode(4),
-		new MindNode(5)
-	], "")
-  ]
 
 const App: FunctionComponent<{}> = (props: {}) => {
-	let [mindNodes, dispatch] = useReducer(mindNodeReducer, testData);
-
+	let [mindNodes, setMindNodes] = useGlobal('mindNodes');
 	return (
 		<div className="App">
-			<MindNodeComponent{...testData[0]}/>
+			<MindNodeComponent {...mindNodes[0]}/>
 		</div>
 	)
 }
