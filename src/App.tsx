@@ -5,10 +5,11 @@ import MindNodeComponent from './components/parent-node/mind-node-component';
 import MindNode from './classes/mind-node';
 
 const App: FunctionComponent<{}> = (props: {}) => {
-	let [mindNodes, setMindNodes] = useGlobal('mindNodes');
+	let [mindNodes, setMindNodes] = useGlobal('focusedMindNode');
+
 	return (
 		<div className="App">
-			<MindNodeComponent {...mindNodes[0]}/>
+			<MindNodeComponent nodeInformation={mindNodes}/>
 		</div>
 	)
 }
