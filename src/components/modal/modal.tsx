@@ -42,10 +42,10 @@ const ConnectedModalComponent:FunctionComponent<{ node: MindNode}> = (props: { n
 
 	return (
 		<div className={className}>
-			<div className="modal-contents">title</div>
-			<input className="modal-contents" value={nodeInformation.title} onChange={event => updateTitle(event.target.value)}/>
-			<div className="modal-contents">description</div>
-			<textarea className="modal-contents" value={nodeInformation.description} onChange={event => updateDescription(event.target.value)} />
+			<div className="modal-header">title</div>
+			<input value={nodeInformation.title} onChange={event => updateTitle(event.target.value)}/>
+			<div className="modal-header">description</div>
+			<textarea value={nodeInformation.description} onChange={event => updateDescription(event.target.value)} />
 			{/* <div>notes</div>
 			{nodeInformation.notes.map((note, id) => {
 				<div key={id}>{note}asd</div>

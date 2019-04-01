@@ -5,9 +5,12 @@
 .modal {
 	width: 20em;
 	height: fit-content;
+	text-align: center;
 	background-color: lightgray;
 	border-width: 1px;
 	border-color: black;
+	border-radius: 5px;
+	padding: 1em;
 	margin: auto;
 	position: absolute;
 	margin: auto;
@@ -18,18 +21,28 @@
 }
 
 .modal > input {
-	width: 100%;
+	margin: 0.5em;
+	width: 90%;
+	border-width: 1px;
+	border-radius: 5px;
+	padding: 0.5em;
 }
 
 .modal > textarea {
-	width: 100%;
+	margin: 0.5em;
+	width: 90%;
+	border-radius: 5px;
+	padding: 0.5em;
+	height: 5em;
+	resize: none;
 }
 
 .modal > button {
 	margin: 1em;
-	padding: 1em;
+	padding: 0.75em;
+	border-radius: 5px;
 }
 
-.modal-contents {
-	display: block;
+.modal-header {
+	margin: 0.5em;
 }
