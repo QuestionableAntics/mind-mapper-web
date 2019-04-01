@@ -27,3 +27,21 @@ export function deleteMindNode(mindNode: MindNode): ReducerMessage {
 
 	return message;
 }
+
+export function setFocusedNode(mindNode: MindNode): ReducerMessage {
+	const message = {
+		type: "SET_FOCUSEDNODE",
+		message: mindNode
+	}
+
+	return message;
+}
+
+export function toggleModal(): ReducerMessage {
+	const message = {
+		type: "TOGGLE_MODAL",
+		message: {} as MindNode
+	}
+
+	return message;
+}

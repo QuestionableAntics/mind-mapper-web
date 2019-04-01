@@ -2,22 +2,26 @@ import React, { useState, FunctionComponent } from "react";
 import { useGlobal } from 'reactn';
 import './child-node-component.scss';
 import MindNode from "../../classes/mind-node";
+import { setFocusedNode } from "../../actions";
+import store from "../../store";
+
+// const mapStateToProps = (state: any) => {
+// 	var componentState = {
+// 		props: {
+// 			nodeInformation
+// 		}
+// 	}
+// 	return {props: {node: state.focusedNode}}
+// }
 
 const MindNodeChildComponent: FunctionComponent<{nodeInformation: MindNode, parentNode: MindNode}> = (props: {nodeInformation: MindNode, parentNode: MindNode}) => {
-	let [focusedMindNode, setFocusedMindNode] = useGlobal('focusedMindNode');
-	let [parentNode, setParentNode] = useGlobal('parentNode');
-	let [mindNodes, setMindNodes] = useGlobal('mindNodes');
+	function setFocusedMindNode(node: MindNode) {
+		store.dispatch(setFocusedNode(node));
+		console.log(store.getState().focusedNode);
+	}
 
 	return (
-		<div className="mind-node-child" key={props.nodeInformation.id} onClick={() => {
-				//let newFocusedNode = mindNodeServiceSM.recursiveFind(mindNodes, props.nodeInformation.id);
-				// setFocusedMindNode(newFocusedNode);
-
-				// if (newFocusedNode) {
-					// let newParentNode = mindNodeServiceSM.recursiveFindParent(mindNodes, newFocusedNode.id);
-					// setParentNode(newParentNode);
-				// }
-			}}>
+		<div className="mind-node-child" key={props.nodeInformation.id} onClick={() => setFocusedMindNode(props.nodeInformation)}>
 			{props.nodeInformation.title}
 		</div>
 	)
