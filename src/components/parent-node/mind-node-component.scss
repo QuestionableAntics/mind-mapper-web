@@ -11,16 +11,19 @@ $backgroundcolor: rgb(88, 5, 99);
 	transition: .5s;
 	margin: auto;
 
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.focused-node {
 	position: absolute;
 	margin: auto;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
 
 .mind-node:hover {
@@ -45,5 +48,5 @@ $backgroundcolor: rgb(88, 5, 99);
 }
 
 .parent-node {
-	margin-left: 100px;
+	margin-right: 100px;
 }

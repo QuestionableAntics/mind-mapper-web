@@ -11,7 +11,9 @@ const initialMindNodes = [
 
 const initialState = {
 	mindNodes: initialMindNodes,
+	childNodes: initialMindNodes.filter(node => node.parentId !== initialMindNodes[0].id),
 	focusedNode: initialMindNodes[0],
+	parentNode: {} as MindNode,
 	modalActive: true
 };
 
@@ -20,15 +22,17 @@ const initialState = {
 function rootReducer(state = initialState, action: ReducerMessage) {
 	switch (action.type) {
 		case "ADD_MINDNODE":
-			// TODO: assign parent id to new node
+			action.message.parentId = state.focusedNode.id;
 			return Object.assign({}, state, {
 				mindNodes: [...state.mindNodes, action.message],
 			});
 		case "DELETE_MINDNODE":
 			// TODO: implement logic to delete all child nodes of deleted mind node
-			// TODO: set focused node to parent of node being deleted
+			// TODO: implement logic to set new parent node upon delete
 			return Object.assign({}, state, {
 				mindNodes: state.mindNodes.filter(mindNode => action.message.id !== mindNode.id),
+				focusedNode: action.message.parentId,
+				// parentNode: state.mindNodes.find(node => action.message.parentId == node.id)
 			});
 		case "UPDATE_MINDNODE":
 			return Object.assign({}, state, {
@@ -38,7 +42,8 @@ function rootReducer(state = initialState, action: ReducerMessage) {
 		case "SET_FOCUSEDNODE":
 			return Object.assign({}, state, {
 				focusedNode: action.message,
-				parentNode: state.mindNodes.find(node => node.id == action.message.parentId)
+				parentNode: state.mindNodes.find(node => node.id == action.message.parentId),
+				childNodes: state.mindNodes.filter(node => node.parentId !== action.message.id)
 			});
 		case "TOGGLE_MODAL":
 			return Object.assign({}, state, {
