@@ -1,9 +1,9 @@
 import React, { Component, FunctionComponent, useState, useReducer } from "react";
 import MindNode from "../../classes/mind-node";
-import { useGlobal } from "reactn"
 import { updateMindNode, toggleModal } from "../../actions";
 import store from "../../store";
 import { connect } from "react-redux";
+import './modal.scss'
 
 
 const mapStateToProps = (state: any) => {
@@ -16,7 +16,6 @@ const ConnectedModalComponent:FunctionComponent<{ node: MindNode}> = (props: { n
 	let className = modalActive ? "modal" : "hidden";
 
 	store.subscribe(() => {
-
 		modalActive = store.getState().modalActive;
 		className = modalActive ? "modal" : "hidden";
 	});
@@ -43,10 +42,14 @@ const ConnectedModalComponent:FunctionComponent<{ node: MindNode}> = (props: { n
 
 	return (
 		<div className={className}>
-			<div>title</div>
-			<input value={nodeInformation.title} onChange={event => updateTitle(event.target.value)}/>
-			<div>description</div>
-			<textarea value={nodeInformation.description} onChange={event => updateDescription(event.target.value)} />
+			<div className="modal-contents">title</div>
+			<input className="modal-contents" value={nodeInformation.title} onChange={event => updateTitle(event.target.value)}/>
+			<div className="modal-contents">description</div>
+			<textarea className="modal-contents" value={nodeInformation.description} onChange={event => updateDescription(event.target.value)} />
+			{/* <div>notes</div>
+			{nodeInformation.notes.map((note, id) => {
+				<div key={id}>{note}asd</div>
+			})} */}
 			<button onClick={() => updateNode(nodeInformation)}>Save</button>
 			<button onClick={() => setModalActive()}>Exit</button>
 		</div>

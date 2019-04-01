@@ -2,11 +2,11 @@ import ReducerMessage from "../interfaces/reducer-message";
 import MindNode from "../classes/mind-node";
 
 const initialMindNodes = [
-	new MindNode(1, 0, "", ["this is a note", "this is another note", "this is a third note"], "omg description"),
+	new MindNode(1, 0, "the og", ["this is a note", "this is another note", "this is a third note"], "omg description"),
 	new MindNode(2, 1, "yert", ["asdfasdf"], "description"),
-	new MindNode(3, 1),
-	new MindNode(4, 1),
-	new MindNode(5, 1)
+	new MindNode(3, 1, "hello title my old friend"),
+	new MindNode(4, 1, "whattado"),
+	new MindNode(5, 2, "hey there coder")
 ];
 
 const initialState = {
@@ -40,10 +40,12 @@ function rootReducer(state = initialState, action: ReducerMessage) {
 				focusedNode: action.message
 			});
 		case "SET_FOCUSEDNODE":
+			// TODO: set x and y positions of child nodes relative to new focused node
 			return Object.assign({}, state, {
 				focusedNode: action.message,
 				parentNode: state.mindNodes.find(node => node.id == action.message.parentId),
-				childNodes: state.mindNodes.filter(node => node.parentId !== action.message.id)
+				childNodes: state.mindNodes.filter(node => node.parentId !== action.message.id),
+				modalActive: false
 			});
 		case "TOGGLE_MODAL":
 			return Object.assign({}, state, {

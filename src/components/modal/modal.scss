@@ -1,4 +1,35 @@
+.modal-card {
+	background-color: lightgray;
+}
+
 .modal {
+	width: 20em;
+	height: fit-content;
+	background-color: lightgray;
+	border-width: 1px;
 	border-color: black;
-	border-radius: 1px;
+	margin: auto;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.modal > input {
+	width: 100%;
+}
+
+.modal > textarea {
+	width: 100%;
+}
+
+.modal > button {
+	margin: 1em;
+	padding: 1em;
+}
+
+.modal-contents {
+	display: block;
 }
