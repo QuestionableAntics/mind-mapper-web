@@ -37,7 +37,8 @@ function rootReducer(state = initialState, action: ReducerMessage) {
 			});
 		case "SET_FOCUSEDNODE":
 			return Object.assign({}, state, {
-				focusedNode: action.message
+				focusedNode: action.message,
+				parentNode: state.mindNodes.find(node => node.id == action.message.parentId)
 			});
 		case "TOGGLE_MODAL":
 			return Object.assign({}, state, {

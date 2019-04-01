@@ -17,7 +17,6 @@ import store from "../../store";
 const MindNodeChildComponent: FunctionComponent<{nodeInformation: MindNode, parentNode: MindNode}> = (props: {nodeInformation: MindNode, parentNode: MindNode}) => {
 	function setFocusedMindNode(node: MindNode) {
 		store.dispatch(setFocusedNode(node));
-		console.log(store.getState().focusedNode);
 	}
 
 	return (

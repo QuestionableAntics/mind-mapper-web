@@ -13,7 +13,6 @@ const mapStateToProps = (state: any) => {
 }
 
 const MindNodeComponentConnected:FunctionComponent<{nodeInformation: MindNode}> = (props: {nodeInformation: MindNode}) => {
-
 	let focusedNode = store.getState().focusedNode;
 	let parentNode = store.getState().mindNodes.find(node => focusedNode.parentId == node.id) || {} as MindNode;
 	let childNodes = store.getState().mindNodes.filter(node => focusedNode.id == node.parentId);
@@ -24,19 +23,24 @@ const MindNodeComponentConnected:FunctionComponent<{nodeInformation: MindNode}> 
 		childNodes = store.getState().mindNodes.filter(node => focusedNode.id == node.parentId);
 	});
 
+	function setFocused(node: MindNode) {
+		store.dispatch(setFocusedNode(node));
+	}
+
 	function setShowModal() {
 		store.dispatch(toggleModal());
 	}
+	console.log(parentNode);
 
     return (
 		<div>
 			{ parentNode &&
-				<div className="parent-node mind-node" onClick={() => { setFocusedNode(parentNode) }}>
+				<div className="parent-node mind-node" onClick={() => setFocused(parentNode) }>
 					{parentNode.title}
 				</div>
 			}
 			{ focusedNode &&
-			<div className="mind-node" onClick={() =>{ setShowModal(); }}>
+			<div className="mind-node" onClick={() => setShowModal() }>
 				{focusedNode.title}
 			</div>
 			}
