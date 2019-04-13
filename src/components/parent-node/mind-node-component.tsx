@@ -5,7 +5,7 @@ import MindNodeChildComponent from "../child-node/child-node-component";
 import ModalComponent from "../modal/modal";
 import MindNode from "../../classes/mind-node";
 import store from "../../store";
-import { setFocusedNode, toggleModal } from "../../actions";
+import { setFocusedNode, toggleModal, addMindNode, deleteMindNode } from "../../actions";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state: any) => {
@@ -27,8 +27,16 @@ const MindNodeComponentConnected:FunctionComponent<{nodeInformation: MindNode}> 
 		store.dispatch(setFocusedNode(node));
 	}
 
+	function addNode() {
+		store.dispatch(addMindNode());
+	}
+
 	function setShowModal() {
 		store.dispatch(toggleModal());
+	}
+
+	function deleteNode(node: MindNode) {
+		store.dispatch(deleteMindNode(node));
 	}
 
     return (
@@ -43,6 +51,11 @@ const MindNodeComponentConnected:FunctionComponent<{nodeInformation: MindNode}> 
 				{focusedNode.title}
 			</div>
 			}
+			<button onClick={() => addNode()}>Add Node</button>
+			<button onClick={() => {
+				if (parentNode) setFocused(parentNode);
+				deleteNode(focusedNode);
+			}}>Delete Node</button>
 			<ModalComponent node={focusedNode} />
 			{ focusedNode && 
 			<div>

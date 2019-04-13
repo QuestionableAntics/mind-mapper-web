@@ -1,5 +1,7 @@
 import ReducerMessage from "../interfaces/reducer-message";
 import MindNode from "../classes/mind-node";
+import store from "../store";
+import { setFocusedNode } from "../actions";
 
 const initialMindNodes = [
 	new MindNode(1, 0, "the og", ["this is a note", "this is another note", "this is a third note"], "omg description"),
@@ -14,12 +16,21 @@ const initialState = {
 	childNodes: initialMindNodes.filter(node => node.parentId !== initialMindNodes[0].id),
 	focusedNode: initialMindNodes[0],
 	parentNode: {} as MindNode,
-	modalActive: true
+	modalActive: false
 };
 
 // TODO: in here or somewhere else, need to save these to a database eventually  
 
 function rootReducer(state = initialState, action: ReducerMessage) {
+
+	function getAllChildNodeIds(parentId: number): number[] {
+		const childIds = state.mindNodes
+							.filter(node => node.parentId !== parentId)
+							.map(node => node.id);
+		// const x = childIds.map(node => getAllChildNodeIds(node.id)).flat();
+		return childIds;
+	}
+
 	switch (action.type) {
 		case "ADD_MINDNODE":
 			action.message.parentId = state.focusedNode.id;
@@ -29,12 +40,15 @@ function rootReducer(state = initialState, action: ReducerMessage) {
 		case "DELETE_MINDNODE":
 			// TODO: implement logic to delete all child nodes of deleted mind node
 			// TODO: implement logic to set new parent node upon delete
+			// const childIds = getAllChildNodeIds(action.message.id);
+			// console.log(childIds);
+			
 			return Object.assign({}, state, {
 				mindNodes: state.mindNodes.filter(mindNode => action.message.id !== mindNode.id),
-				focusedNode: action.message.parentId,
-				// parentNode: state.mindNodes.find(node => action.message.parentId == node.id)
 			});
 		case "UPDATE_MINDNODE":
+			const childIds = getAllChildNodeIds(action.message.id);
+			console.log(childIds);
 			return Object.assign({}, state, {
 				mindNodes: [...state.mindNodes.filter(mindNode => action.message.id !== mindNode.id), action.message],
 				focusedNode: action.message
@@ -55,4 +69,7 @@ function rootReducer(state = initialState, action: ReducerMessage) {
 			return state;
 	}
   };
+
+  
+
   export default rootReducer;
