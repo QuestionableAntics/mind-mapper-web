@@ -53,8 +53,8 @@ const MindNodeComponentConnected:FunctionComponent<{nodeInformation: MindNode}> 
 			}
 			<button onClick={() => addNode()}>Add Node</button>
 			<button onClick={() => {
-				if (parentNode) setFocused(parentNode);
 				deleteNode(focusedNode);
+				setFocused(parentNode!);
 			}}>Delete Node</button>
 			<ModalComponent node={focusedNode} />
 			{ focusedNode && 
